@@ -100,6 +100,7 @@ describe("multiSigWallet", function () {
             await expect(executeTx).to.be.emit(multiSigWallet, "Execute").withArgs(0, submiter.address, amount, "0x74657374000000000000000000000000000000000000000000000000000000")
             const transactionTx = await multiSigWallet.transactions(0)
             expect(transactionTx.executed).to.be.equal(true)
+            expect(await ethers.provider.getBalance(multiSigWallet.address)).to.be.equal(0)
             expect(await multiSigWallet.getBalance()).to.be.equal(0)            
         });      
     })
